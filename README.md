@@ -22,7 +22,7 @@ curl -sS https://getcomposer.org/installer | php
 Then install the library:
 
 ```bash
-> composer require kilvn/ripple-api
+> composer require kilvn/ripple-api -vvv
 ```
 
 Additional examples are available in the [examples](examples/) directory 
@@ -35,14 +35,17 @@ Use the Ripple
 $address = "";
 $secret_key = "";
 
-$ripple = new \IEXBase\RippleAPI\Ripple($address, $secret_key);
+$ripple = new \IEXBase\RippleAPI\Ripple(string $address, string $secret_key = "");
 
-dump($ripple->getAccount()); 
+//$account = $ripple->getAccount();
+//dump($account);
+$balance = $ripple->getAccountBalances();
+dump($balance);
 ```
 
 ## Features
 
-+ Forked from [iexbase/ripple-api](https://github.com/iexbase/ripple-api), fixed some bug.
++ Forked from [iexbase/ripple-api](https://github.com/iexbase/ripple-api), transfered to english and fixed some bug.
 + Issue [rippled API](https://ripple.com/build/rippled-apis/) requests
 + Listen to events on the XRP Ledger (transaction, ledger, etc.)
 + Sign and submit transactions to the XRP Ledger
@@ -50,5 +53,5 @@ dump($ripple->getAccount());
 ## More Information
 + [Ripple Developer Center](https://ripple.com/build/)
 
-## Donations
+## Donations(iexbase)
 Ripple: rKhWrsiQpUhcdjH3CkM8feHxcrsjSnEx9m
