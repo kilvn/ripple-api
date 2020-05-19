@@ -1,33 +1,34 @@
 <?php
+
 namespace IEXBase\RippleAPI\Objects;
 
 class BalanceObject extends AbstractObject
 {
     /**
-     * Контрагент или эмитент валюты. В случае XRP это пустая строка.
+     * Counterparty or issuer of currency. In the case of XRP, this is an empty string.
      *
      * @return string
-    */
+     */
     public function getCounterParty()
     {
         return $this->getField('counterparty');
     }
 
     /**
-     * Валюта, для которой этот баланс изменился.
+     * The currency for which this balance has changed.
      *
      * @return string
-    */
+     */
     public function getCurrency()
     {
         return $this->getField('currency');
     }
 
     /**
-     * Сумма валюты, которую связанный счет получил или потерял.
+     * The amount of currency that the linked account received or lost.
      *
      * @return string
-    */
+     */
     public function getValue()
     {
         return $this->getField('value');

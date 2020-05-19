@@ -1,4 +1,5 @@
 <?php
+
 namespace IEXBase\RippleAPI\Support;
 
 use ArrayAccess;
@@ -29,7 +30,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      * Возвращает значение поля из узла.
      *
      * @param string $name
-     * @param mixed  $default
+     * @param mixed $default
      *
      * @return mixed
      */
@@ -46,7 +47,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      * Возвращает значение именованного свойства
      *
      * @param string $name
-     * @param mixed  $default
+     * @param mixed $default
      *
      * @return mixed
      */
@@ -111,8 +112,8 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     /**
      * Получить первый элемент из коллекции.
      *
-     * @param  callable|null  $callback
-     * @param  mixed  $default
+     * @param callable|null $callback
+     * @param mixed $default
      * @return mixed
      */
     public function first(callable $callback = null, $default = null)
@@ -124,7 +125,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     /**
      * Запускаем фильтр по каждому из элементов.
      *
-     * @param  callable|null  $callback
+     * @param callable|null $callback
      * @return static
      */
     public function filter(callable $callback = null)

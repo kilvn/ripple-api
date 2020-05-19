@@ -12,8 +12,7 @@ $secretKey = "";
 $ripple = new \IEXBase\RippleAPI\Ripple($address, $secretKey);
 
 try {
-    $transfer = $ripple->buildTransaction(function (TransactionBuilderContract $item)
-    {
+    $transfer = $ripple->buildTransaction(function (TransactionBuilderContract $item) {
         return $item
             ->setAmount(0.004)
             ->setDestinationTag(1)

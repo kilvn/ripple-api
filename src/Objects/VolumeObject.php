@@ -1,4 +1,5 @@
 <?php
+
 namespace IEXBase\RippleAPI\Objects;
 
 class VolumeObject extends AbstractObject
@@ -17,7 +18,7 @@ class VolumeObject extends AbstractObject
      * Общее количество обменов в этот период.
      *
      * @return integer
-    */
+     */
     public function getCount()
     {
         return $this->getField('count');
@@ -27,7 +28,7 @@ class VolumeObject extends AbstractObject
      * Конечное время этого интервала.
      *
      * @return string
-    */
+     */
     public function getEndTime()
     {
         return $this->getField('end_time');
@@ -38,7 +39,7 @@ class VolumeObject extends AbstractObject
      * как и для валюты полей и (кроме XRP) эмитента.
      *
      * @return string
-    */
+     */
     public function getExchange()
     {
         return $this->getField('exchange');
@@ -48,7 +49,7 @@ class VolumeObject extends AbstractObject
      * Обменный курс с отображаемой валютой из XRP.
      *
      * @return integer
-    */
+     */
     public function getExchangeRate()
     {
         return $this->getField('exchange_rate');
@@ -58,7 +59,7 @@ class VolumeObject extends AbstractObject
      * Начало этого периода.
      *
      * @return string
-    */
+     */
     public function getStartTime()
     {
         return $this->getField('start_time');
@@ -68,7 +69,7 @@ class VolumeObject extends AbstractObject
      * Общий объем всех зарегистрированных обменных курсов за период.
      *
      * @return integer
-    */
+     */
     public function getTotal()
     {
         return $this->getField('total');

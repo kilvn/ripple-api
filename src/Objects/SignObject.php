@@ -1,34 +1,35 @@
 <?php
+
 namespace IEXBase\RippleAPI\Objects;
 
 class SignObject extends AbstractObject
 {
     /**
-     * Статус подписи
+     * Signature Status
      *
      * @return string
-    */
+     */
     public function getStatus()
     {
         return $this->getField('status');
     }
 
     /**
-     * Двоичное представление полностью квалифицированной подписанной транзакции
+     * Binary representation of a fully qualified signed transaction
      *
      * @return string
-    */
+     */
     public function getTxBlob()
     {
         return $this->getField('tx_blob');
     }
 
     /**
-     * Спецификация jSON полной транзакции, подписанная, включая любые поля,
-     * которые были автоматически заполнены
+     * The jSON specification of the complete transaction, signed, including any fields,
+     * which were automatically filled
      *
      * @return TransactionCommonObject
-    */
+     */
     public function getTxJson()
     {
         return $this->getField('tx_json');

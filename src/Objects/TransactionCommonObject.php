@@ -1,4 +1,5 @@
 <?php
+
 namespace IEXBase\RippleAPI\Objects;
 
 
@@ -8,7 +9,7 @@ class TransactionCommonObject extends AbstractObject
      * Уникальный адрес учетной записи, инициировавшей транзакцию.
      *
      * @return string
-    */
+     */
     public function getAccount()
     {
         return $this->getField('Account');
@@ -22,7 +23,7 @@ class TransactionCommonObject extends AbstractObject
      * PaymentChannelCreate, PaymentChannelFund, и PaymentChannelClaim.
      *
      * @return string
-    */
+     */
     public function getTransactionType()
     {
         return $this->getField('TransactionType');
@@ -41,7 +42,7 @@ class TransactionCommonObject extends AbstractObject
      * Номер последовательности по отношению к инициирующей учетной записи этой транзакции
      *
      * @return integer
-    */
+     */
     public function getSequence()
     {
         return $this->getField('Sequence');
@@ -51,7 +52,7 @@ class TransactionCommonObject extends AbstractObject
      * Значение хеширования, идентифицирующее другую транзакцию.
      *
      * @return string
-    */
+     */
     public function getAccountTxnID()
     {
         return $this->getField('AccountTxnID');
@@ -61,7 +62,7 @@ class TransactionCommonObject extends AbstractObject
      * Набор бит-флагов для этой транзакции.
      *
      * @return integer
-    */
+     */
     public function getFlags()
     {
         return $this->getField('Flags');
@@ -71,7 +72,7 @@ class TransactionCommonObject extends AbstractObject
      * Показатель с наивысшей регистрацией, в который может вступить транзакция.
      *
      * @return integer
-    */
+     */
     public function getLastLedgerSequence()
     {
         return $this->getField('LastLedgerSequence');
@@ -81,7 +82,7 @@ class TransactionCommonObject extends AbstractObject
      * Дополнительная произвольная информация, используемая для идентификации этой транзакции.
      *
      * @return array|object
-    */
+     */
     public function getMemos()
     {
         return $this->getField('Memos');
@@ -92,7 +93,7 @@ class TransactionCommonObject extends AbstractObject
      * которая разрешает эту транзакцию.
      *
      * @return array
-    */
+     */
     public function getSigners()
     {
         return $this->getField('Signers');
@@ -103,7 +104,7 @@ class TransactionCommonObject extends AbstractObject
      * или отправителя, от имени которого совершена эта транзакция.
      *
      * @return integer
-    */
+     */
     public function getSourceTag()
     {
         return $this->getField('SourceTag');
@@ -114,7 +115,7 @@ class TransactionCommonObject extends AbstractObject
      * используемому для подписи этой транзакции.
      *
      * @return string
-    */
+     */
     public function getSigningPubKey()
     {
         return $this->getField('SigningPubKey');
@@ -125,7 +126,7 @@ class TransactionCommonObject extends AbstractObject
      * из которой она написана.
      *
      * @return string
-    */
+     */
     public function getTxnSignature()
     {
         return $this->getField('TxnSignature');

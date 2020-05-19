@@ -22,7 +22,7 @@ curl -sS https://getcomposer.org/installer | php
 Then install the library:
 
 ```bash
-> composer require iexbase/ripple-api
+> composer require kilvn/ripple-api
 ```
 
 Additional examples are available in the [examples](examples/) directory 
@@ -42,6 +42,7 @@ dump($ripple->getAccount());
 
 ## Features
 
++ Forked from [iexbase/ripple-api](https://github.com/iexbase/ripple-api), fixed some bug.
 + Issue [rippled API](https://ripple.com/build/rippled-apis/) requests
 + Listen to events on the XRP Ledger (transaction, ledger, etc.)
 + Sign and submit transactions to the XRP Ledger

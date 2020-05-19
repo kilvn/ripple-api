@@ -1,4 +1,5 @@
 <?php
+
 namespace IEXBase\RippleAPI\Transaction;
 
 use IEXBase\RippleAPI\Contracts\TransactionBuilderContract;
@@ -7,56 +8,56 @@ use IEXBase\RippleAPI\Support\Arr;
 class TransactionBuilder implements TransactionBuilderContract
 {
     /**
-     * Проверка транзакции
+     * Transaction check
      *
      * @var boolean
-    */
-    protected $offline = false;
+     */
+    protected bool $offline = false;
 
     /**
-     * Секретный ключ
+     * The secret key
      *
      * @var string
-    */
-    protected $secret = null;
+     */
+    protected ?string $secret = null;
 
     /**
-     * Тип транзакции
+     * Transaction type
      *
      * @var string
-    */
-    protected $TransactionType = null;
+     */
+    protected ?string $TransactionType = null;
 
     /**
-     * Адрес кошелька отправителя
+     * Sender Wallet Address
      *
      * @var string
-    */
-    protected $Account = null;
+     */
+    protected ?string $Account = null;
 
     /**
-     * Сумма отправки
+     * Shipment Amount
      *
      * @var integer
-    */
-    protected $Amount = 0;
+     */
+    protected int $Amount = 0;
 
     /**
-     * Адрес получателя
+     * Recipient's address
      *
      * @var string
-    */
-    protected $Destination = null;
+     */
+    protected ?string $Destination = null;
 
     /**
-     * Метка (DestinationTag)
+     * Label (DestinationTag)
      *
      * @var string
-    */
-    protected $DestinationTag = null;
+     */
+    protected ?string $DestinationTag = null;
 
     /**
-     * Если true, при построении транзакции не пытайтесь автоматически заполнять или проверять значения.
+     * If true, do not try to automatically populate or check values ​​when building a transaction.
      *
      * @return bool
      */
@@ -66,7 +67,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Уставливаем новое значение
+     * Set a new value
      *
      * @param bool $offline
      * @return TransactionBuilder
@@ -78,7 +79,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Получить приватный ключ
+     * Get private key
      *
      * @return null
      */
@@ -88,7 +89,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Указать новый приватный ключ
+     * Specify a new private key
      *
      * @param null $secret
      * @return TransactionBuilder
@@ -100,7 +101,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Получить тип транзакции
+     * Get Transaction Type
      *
      * @return string
      */
@@ -110,7 +111,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Указать тип транзакции
+     * Specify Transaction Type
      *
      * @param mixed $TransactionType
      * @return TransactionBuilder
@@ -122,7 +123,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Получить адрес отправителя
+     * Get sender address
      *
      * @return string
      */
@@ -132,7 +133,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Указать новый адрес отправителя
+     * Enter a new sender address
      * @param mixed $Account
      *
      * @return TransactionBuilder
@@ -144,17 +145,17 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Получить сумму
+     * Get the amount
      *
      * @return integer
      */
-    public function getAmount() : int
+    public function getAmount(): int
     {
         return $this->Amount * 1e6;
     }
 
     /**
-     * Указать новую сумму для отправки
+     * Specify a new amount to send
      *
      * @param mixed $Amount
      * @return TransactionBuilder
@@ -166,7 +167,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Получить адрес получателя
+     * Get recipient address
      *
      * @return string
      */
@@ -176,7 +177,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Указать новый адрес получателя
+     * Enter a new recipient address
      *
      * @param mixed $Destination
      * @return TransactionBuilder
@@ -188,7 +189,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Получить DestinationTag
+     * Get DestinationTag
      *
      * @return string|int
      */
@@ -198,7 +199,7 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Указать новый DestinationTag
+     * Specify a new DestinationTag
      *
      * @param mixed $DestinationTag
      * @return TransactionBuilder
@@ -210,36 +211,36 @@ class TransactionBuilder implements TransactionBuilderContract
     }
 
     /**
-     * Подписываем сообщение
+     * Sign the message
      *
      * @return array
-    */
+     */
     public function sign()
     {
         $array = [];
-        if($this->getDestinationTag() != null) {
-            Arr::set($array,'tx_json.DestinationTag', $this->getDestinationTag());
+        if ($this->getDestinationTag() != null) {
+            Arr::set($array, 'tx_json.DestinationTag', $this->getDestinationTag());
         }
 
-        if($this->getDestination() != null) {
-            Arr::set($array,'tx_json.Destination', $this->getDestination());
+        if ($this->getDestination() != null) {
+            Arr::set($array, 'tx_json.Destination', $this->getDestination());
         }
 
-        if($this->getAmount() != null) {
-            Arr::set($array,'tx_json.Amount', $this->getAmount());
+        if ($this->getAmount() != null) {
+            Arr::set($array, 'tx_json.Amount', $this->getAmount());
         }
 
-        if($this->getAccount() != null) {
-            Arr::set($array,'tx_json.Account', $this->getAccount());
+        if ($this->getAccount() != null) {
+            Arr::set($array, 'tx_json.Account', $this->getAccount());
         }
 
-        if($this->getTransactionType() != null) {
-            Arr::set($array,'tx_json.TransactionType', $this->getTransactionType());
+        if ($this->getTransactionType() != null) {
+            Arr::set($array, 'tx_json.TransactionType', $this->getTransactionType());
         }
 
         return array_merge([
-            'offline'   =>  $this->isOffline(),
-            'secret'    =>  $this->getSecret()
+            'offline' => $this->isOffline(),
+            'secret' => $this->getSecret()
         ], $array);
     }
 }

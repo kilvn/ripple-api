@@ -1,4 +1,5 @@
 <?php
+
 namespace IEXBase\RippleAPI\Objects;
 
 use IEXBase\RippleAPI\Support\Collection;
@@ -6,14 +7,14 @@ use IEXBase\RippleAPI\Support\Collection;
 abstract class AbstractObject extends Collection
 {
     /**
-     * Имена ключей объектов
+     * Object Key Names
      *
      * @var array
      */
     protected static $objectMap = [];
 
     /**
-     * Создаем новый абстрактный класс AbstractObject
+     * Create a new AbstractObject class
      *
      * @param array $data
      */
@@ -23,7 +24,7 @@ abstract class AbstractObject extends Collection
     }
 
     /**
-     * Возвращает все элементы в виде массива.
+     * Returns all elements as an array.
      *
      * @param array $data
      * @return array
@@ -38,8 +39,8 @@ abstract class AbstractObject extends Collection
     }
 
     /**
-     * Отключает любые автоматические типы данных.
-     * В основном обратная сторона castItems().
+     * Disables any automatic data types.
+     * Basically the flip side of castItems().
      *
      * @return array
      */
@@ -57,7 +58,7 @@ abstract class AbstractObject extends Collection
     }
 
     /**
-     * Получите коллекцию предметов как JSON.
+     * Get a collection of items as JSON.
      *
      * @param int $options
      * @return string
@@ -68,7 +69,7 @@ abstract class AbstractObject extends Collection
     }
 
     /**
-     * Обнаруживает форматированную строку ISO 8601.
+     * Detects ISO 8601 formatted string.
      *
      * @param string $string
      * @return boolean

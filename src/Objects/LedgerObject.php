@@ -1,94 +1,95 @@
 <?php
+
 namespace IEXBase\RippleAPI\Objects;
 
 
 class LedgerObject extends AbstractObject
 {
     /**
-     * Уникальный хэш, уникальный для этой книги, как шестнадцатеричная строка.
+     * A unique hash, unique to this book, like a hexadecimal string.
      *
      * @return string
-    */
+     */
     public function getLedgerHash()
     {
         return $this->getField('ledger_hash');
     }
 
     /**
-     * Номер последовательности регистра.
+     * Register Sequence Number.
      *
      * @return integer
-    */
+     */
     public function getLedgerIndex()
     {
         return $this->getField('ledger_index');
     }
 
     /**
-     * Идентификационный хэш предыдущей книги.
+     * The identification hash of the previous book.
      *
      * @return string
-    */
+     */
     public function getParentHash()
     {
         return $this->getField('parent_hash');
     }
 
     /**
-     * Общее количество «drops» XRP все еще существует во время книги. (Каждый XRP составляет 1 000 000 drops.)
+     * The total number of "drops" XRP still exists during the book. (Each XRP is 1,000,000 drops.)
      *
      * @return string
-    */
+     */
     public function getTotalCoins()
     {
         return $this->getField('total_coins');
     }
 
     /**
-     * Время закрытия книги округлено до этого много секунд.
+     * The closing time of the book is rounded up to this many seconds.
      *
      * @return integer
-    */
+     */
     public function getCloseTimeRes()
     {
         return $this->getField('close_time_res');
     }
 
     /**
-     * Хэш информации учетной записи, содержащейся в этой книге.
+     * A hash of the account information contained in this book.
      *
      * @return string
-    */
+     */
     public function getAccountsHash()
     {
         return $this->getField('accounts_hash');
     }
 
     /**
-     * Хеш информации транзакции, содержащейся в этой книге.
+     * A hash of the transaction information contained in this book.
      *
      * @return string
-    */
+     */
     public function getTransactionsHash()
     {
         return $this->getField('transactions_hash');
     }
 
     /**
-     * Когда эта книга была закрыта во время UNIX.
+     * When this book was closed during UNIX.
      *
      * @return integer
-    */
+     */
     public function getCloseTime()
     {
         return $this->getField('close_time');
     }
 
     /**
-     * Когда эта книга была закрыта.
+     * When this book was closed.
      *
      * @return string
-    */
+     */
     public function getCloseTimeHuman()
     {
         return $this->getField('close_time_human');

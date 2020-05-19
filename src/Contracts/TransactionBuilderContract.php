@@ -1,18 +1,18 @@
 <?php
-namespace IEXBase\RippleAPI\Contracts;
 
+namespace IEXBase\RippleAPI\Contracts;
 
 interface TransactionBuilderContract
 {
     /**
-     * Получить тип транзакции
+     * Get Transaction Type
      *
      * @return string
      */
     public function getTransactionType();
 
     /**
-     * Указать тип транзакции
+     * Specify Transaction Type
      *
      * @param mixed $TransactionType
      * @return TransactionBuilderContract
@@ -20,14 +20,14 @@ interface TransactionBuilderContract
     public function setTransactionType($TransactionType);
 
     /**
-     * Получить адрес отправителя
+     * Get sender address
      *
      * @return string
      */
     public function getAccount();
 
     /**
-     * Указать новый адрес отправителя
+     * Enter a new sender address
      * @param mixed $Account
      *
      * @return TransactionBuilderContract
@@ -35,14 +35,14 @@ interface TransactionBuilderContract
     public function setAccount($Account);
 
     /**
-     * Получить сумму
+     * Get the amount
      *
      * @return integer
      */
-    public function getAmount() : int;
+    public function getAmount(): int;
 
     /**
-     * Указать новую сумму для отправки
+     * Specify a new amount to send
      *
      * @param mixed $Amount
      * @return TransactionBuilderContract
@@ -50,14 +50,14 @@ interface TransactionBuilderContract
     public function setAmount($Amount);
 
     /**
-     * Получить адрес получателя
+     * Get recipient address
      *
      * @return string
      */
     public function getDestination();
 
     /**
-     * Указать новый адрес получателя
+     * Enter a new recipient address
      *
      * @param mixed $Destination
      * @return TransactionBuilderContract
@@ -65,14 +65,14 @@ interface TransactionBuilderContract
     public function setDestination($Destination);
 
     /**
-     * Получить DestinationTag
+     * Get DestinationTag
      *
      * @return mixed
      */
     public function getDestinationTag();
 
     /**
-     * Указать новый DestinationTag
+     * Specify a new DestinationTag
      *
      * @param mixed $DestinationTag
      * @return TransactionBuilderContract
@@ -80,7 +80,7 @@ interface TransactionBuilderContract
     public function setDestinationTag($DestinationTag);
 
     /**
-     * Подписываем сообщение
+     * Sign the message
      *
      * @return array
      */

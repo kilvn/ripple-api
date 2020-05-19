@@ -1,4 +1,5 @@
 <?php
+
 namespace IEXBase\RippleAPI;
 
 use IEXBase\RippleAPI\Objects\AccountObject;
@@ -10,35 +11,35 @@ use IEXBase\RippleAPI\Transaction\TransactionBuilder;
 class Ripple
 {
     /**
-     * Адрес кошелька
+     * Wallet address
      *
      * @var string
      */
-    protected $address;
+    protected string $address;
 
     /**
-     * Приватный ключ кошелька
+     * Private wallet key
      *
      * @var string
      */
-    protected $secret;
+    protected ?string $secret;
 
     /**
      * Ripple client service
      *
      * @var RippleClient
      */
-    protected $client;
+    protected RippleClient $client;
 
     /**
-     * Получаем Хэш подписанной транзакции
+     * Get the Hash of the signed transaction
      *
      * @var string
      */
-    protected $tx_blob;
+    protected string $tx_blob;
 
     /**
-     * Создаем объект суперкласса Ripple.
+     * Create a Ripple superclass object.
      *
      * @param $address
      * @param null $secret
@@ -53,37 +54,37 @@ class Ripple
     }
 
     /**
-     * Получение пинга
+     * Receive Ping
      *
      * @return array
      */
-    public function getPing() : array
+    public function getPing(): array
     {
         return $this->call('ping', '/');
     }
 
     /**
-     * Получаем детальную информацию о сервере
+     * Get detailed server information
      *
      * @return array
      */
-    public function getServerInfo() : array
+    public function getServerInfo(): array
     {
         return $this->call('server_info', '/');
     }
 
     /**
-     * Генерация случайних чисел
+     * Random number generation
      *
      * @return array
      */
-    public function getRandom() : array
+    public function getRandom(): array
     {
         return $this->call('random', '/');
     }
 
     /**
-     * Получаем список активных аккаунтов
+     * Get a list of active accounts
      *
      * @param array $params
      * @return array
@@ -94,36 +95,34 @@ class Ripple
     }
 
     /**
-     * Получаем информацию об аккаунте
+     * Get account information
      *
      * @param null $address
      * @return AccountObject
      */
-    public function getAccount($address = null) : AccountObject
+    public function getAccount($address = null): AccountObject
     {
-        $address = ($address == null ? $this->address : $address);
+        $address = $address ?? $this->address;
         $response = $this->call('GET', sprintf('/accounts/%s', $address));
 
         return new AccountObject($response['account_data']);
     }
 
     /**
-     * Получаем баланс аккаунта
+     * Get account balance
      *
      * @param null $address
      * @param array $params
      * @return array
      */
-    public function getAccountBalances($address = null, $params = []) : array
+    public function getAccountBalances($address = null, $params = []): array
     {
-        $address = ($address == null ? $this->address : $address);
-        $response =  $this->call('GET', sprintf('/accounts/%s/balances', $address), $params);
-
-        return $response;
+        $address = $address ?? $this->address;
+        return $this->call('GET', sprintf('/accounts/%s/balances', $address), $params);
     }
 
     /**
-     * Список транзакции аккаунта
+     * Account Transaction List
      *
      * @param null $address
      * @param array $params
@@ -131,10 +130,10 @@ class Ripple
      */
     public function getAccountPayments($address = null, $params = [])
     {
-        $address = ($address == null ? $this->address : $address);
+        $address = $address ?? $this->address;
         $response = $this->call('GET', sprintf('/accounts/%s/payments', $address), $params);
 
-        if($response['count'] == 1) {
+        if ($response['count'] == 1) {
             return new PaymentObject($response['payments'][0]);
         } else {
             return $response['payments'];
@@ -142,7 +141,7 @@ class Ripple
     }
 
     /**
-     * Получаем ордера клиентов
+     * We receive customer orders
      *
      * @param $address
      * @param array $params
@@ -150,12 +149,12 @@ class Ripple
      */
     public function getAccountOrder($address = null, $params = [])
     {
-        $address = ($address == null ? $this->address : $address);
-        return $this->call('GET', sprintf('/account/%s/orders', $address), $params);
+        $address = $address ?? $this->address;
+        return $this->call('GET', sprintf('/accounts/%s/orders', $address), $params);
     }
 
     /**
-     * Получаем историю клиентских транзакций
+     * Get client transaction history
      *
      * @param $address
      * @param array $params
@@ -163,14 +162,14 @@ class Ripple
      */
     public function getAccountTransactionHistory($address = null, $params = [])
     {
-        $address = ($address == null ? $this->address : $address);
-        $response =  $this->call('GET', sprintf('/accounts/%s/transactions', $address), $params);
+        $address = $address ?? $this->address;
+        $response = $this->call('GET', sprintf('/accounts/%s/transactions', $address), $params);
 
         return new TransactionObject($response['transactions']);
     }
 
     /**
-     * Получаем транзакцию по учетной записи и последовательности
+     * We get the transaction by account and sequence
      *
      * @param null $address
      * @param null $sequence
@@ -179,12 +178,12 @@ class Ripple
      */
     public function getTransactionAccountAndSequence($address = null, $sequence = null, $params = [])
     {
-        $address = ($address == null ? $this->address : $address);
+        $address = $address ?? $this->address;
         return $this->call('GET', sprintf('/accounts/%s/transactions/%s', $address, $sequence), $params);
     }
 
     /**
-     * Получить статистику транзакций по учетной записи
+     * Get account transaction statistics
      *
      * @param null $address
      * @param array $params
@@ -192,12 +191,12 @@ class Ripple
      */
     public function getAccountTransactionStats($address = null, $params = [])
     {
-        $address = ($address == null ? $this->address : $address);
+        $address = $address ?? $this->address;
         return $this->call('GET', sprintf('/accounts/%s/stats/transactions', $address), $params);
     }
 
     /**
-     * Получить статистику учетной записи
+     * Get account statistics
      *
      * @param null $address
      * @param array $params
@@ -205,12 +204,12 @@ class Ripple
      */
     public function getAccountValueStat($address = null, $params = [])
     {
-        $address = ($address == null ? $this->address : $address);
+        $address = $address ?? $this->address;
         return $this->call('GET', sprintf('/accounts/%s/stats/value', $address), $params);
     }
 
     /**
-     * Получаем информацию о траназакции
+     * Get Transaction Information
      *
      * @param null $hash
      * @param array $params
@@ -218,16 +217,16 @@ class Ripple
      */
     public function getTransaction($hash = null, $params = [])
     {
-        $response = $this->call('GET', '/transactions/'.$hash, $params);
+        $response = $this->call('GET', '/transactions/' . $hash, $params);
 
-        if(isset($response['count']) and $response['count'] > 1) {
+        if (isset($response['count']) and $response['count'] > 1) {
             return $response['transactions'];
         }
         return new TransactionObject($response['transaction']);
     }
 
     /**
-     * Получение последних версий
+     * Getting the latest versions
      *
      * @return array
      */
@@ -237,7 +236,7 @@ class Ripple
     }
 
     /**
-     * Получаем список всех шлюзов
+     * Get a list of all gateways
      *
      * @return array
      */
@@ -247,18 +246,18 @@ class Ripple
     }
 
     /**
-     * Получаем определенный шлюз
+     * Get a specific gateway
      *
      * @param $gateway
      * @return array
      */
     public function getGateway($gateway)
     {
-        return $this->call('GET', '/gateways/'.$gateway);
+        return $this->call('GET', '/gateways/' . $gateway);
     }
 
     /**
-     * Проверка работоспособности - API
+     * Health Check - API
      *
      * @param array $params
      * @return array
@@ -269,7 +268,7 @@ class Ripple
     }
 
     /**
-     * Проверка работоспособности - Импортер книги
+     * Health Check - Book Importer
      *
      * @param array $params
      * @return array
@@ -280,7 +279,7 @@ class Ripple
     }
 
     /**
-     * Проверка работоспособности - узлы ETL
+     * Health Check - ETL Nodes
      *
      * @param array $params
      * @return array
@@ -291,7 +290,7 @@ class Ripple
     }
 
     /**
-     * Проверка работоспособности - проверки ETL
+     * Health Check - ETL Checks
      *
      * @param array $params
      * @return array
@@ -302,7 +301,7 @@ class Ripple
     }
 
     /**
-     * Получаем комиссию
+     * We get a commission
      *
      * @return array
      */
@@ -312,7 +311,7 @@ class Ripple
     }
 
     /**
-     * Проверить транзакцию
+     * Check transaction
      *
      * @param $tx
      * @return array
@@ -320,12 +319,12 @@ class Ripple
     public function verifyTransaction($tx)
     {
         return $this->call('tx', '/', [
-            'transaction'   =>  $tx
+            'transaction' => $tx
         ]);
     }
 
     /**
-     * Получаем список всех транзакций
+     * Get a list of all transactions
      * @param array $params
      * @return array
      */
@@ -335,7 +334,7 @@ class Ripple
     }
 
     /**
-     * Получаем подробную статистику об учетной записи
+     * Get detailed account statistics
      *
      * @param array $params
      * @return array
@@ -346,7 +345,7 @@ class Ripple
     }
 
     /**
-     * Создаем новую транзакцию
+     * Create a new transaction
      *
      * @param \Closure $closure
      * @return Ripple
@@ -357,38 +356,39 @@ class Ripple
         $payment->setSecret($this->secret);
         $payment->setAccount($this->address);
 
-        if($closure instanceof \Closure)
-        {
-            $response = $this->call('sign', '/', $closure->call($payment,$payment));
-            if($response['result']['status'] == 'success') {
+        if ($closure instanceof \Closure) {
+            $response = $this->call('sign', '/', $closure->call($payment, $payment));
+            if ($response['result']['status'] == 'success') {
                 $this->tx_blob = (new SignObject($response['result']))->getTxBlob();
             }
 
             return $this;
         }
+
+        return null;
     }
 
     /**
-     * Отправляем подписанную транзакцию на сервер Ripple
+     * We send the signed transaction to the Ripple server
      *
      * @return array
      * @throws \Exception
      */
     public function submit()
     {
-        $result = $this->call('submit','/', [
-            'tx_blob'=> $this->tx_blob
+        $result = $this->call('submit', '/', [
+            'tx_blob' => $this->tx_blob
         ]);
 
-        if(empty($result)) {
-            throw new \Exception('Полученный подпись недействителен');
+        if (empty($result)) {
+            throw new \Exception('Signature received is invalid');
         } else {
             return $result;
         }
     }
 
     /**
-     * Отправляем средства используя стронний сервер
+     * We send funds using a strontium server
      *
      * @param $options
      * @return array
@@ -396,17 +396,17 @@ class Ripple
      */
     public function sendAndSubmitForServer($options)
     {
-        $result = $this->client->sendRequestWss('POST','/send-xrp', $options);
+        $result = $this->client->sendRequestWss('POST', '/send-xrp', $options);
 
-        if(empty($result)) {
-            throw new \Exception('Транзакция не отправлена');
+        if (empty($result)) {
+            throw new \Exception('Transaction not sent');
         } else {
             return $result;
         }
     }
 
     /**
-     * Базовая функция для формировании запросов
+     * Basic function for generating queries
      *
      * @param $method
      * @param $path
@@ -415,7 +415,7 @@ class Ripple
      */
     protected function call($method, $path, $params = [])
     {
-        if(in_array($method, ['GET', 'POST', 'PUT', 'DELETE'])) {
+        if (in_array($method, ['GET', 'POST', 'PUT', 'DELETE'])) {
             return $this->client->sendRequest(
                 $method,
                 trim($path),

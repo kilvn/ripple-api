@@ -1,4 +1,5 @@
 <?php
+
 namespace IEXBase\RippleAPI\Support;
 
 class TransactionType

@@ -1,10 +1,11 @@
 <?php
+
 namespace IEXBase\RippleAPI\Objects;
 
 class AccountObject extends AbstractObject
 {
     /**
-     * Идентификационный адрес этой учетной записи на base-58.
+     * The account ID for this account is base-58.
      *
      * @return string
      */
@@ -14,7 +15,7 @@ class AccountObject extends AbstractObject
     }
 
     /**
-     * Временная метка UTC, когда адрес был профинансирован
+     * UTC timestamp when the address was funded
      *
      * @return string
      */
@@ -24,7 +25,7 @@ class AccountObject extends AbstractObject
     }
 
     /**
-     * Последовательный номер журнала при создании учетной записи
+     * Sequential log number when creating an account
      *
      * @return integer
      */
@@ -34,7 +35,7 @@ class AccountObject extends AbstractObject
     }
 
     /**
-     * (Опущено для счетов генезиса) Адрес, который предоставил XRP для финансирования.
+     * (Omitted for genesis accounts) Address that XRP provided for funding.
      *
      * @return string
      */
@@ -44,8 +45,8 @@ class AccountObject extends AbstractObject
     }
 
     /**
-     * (Опущено для учетных записей генезиса)
-     * Идентификационный хеш транзакции, которая финансировала эту учетную запись.
+     * (Omitted for genesis accounts)
+     * The authentication hash of the transaction that financed this account.
      *
      * @return string
      */
@@ -55,7 +56,7 @@ class AccountObject extends AbstractObject
     }
 
     /**
-     * Доступный баланс XRP
+     * Available XRP Balance
      *
      * @return string
      */
@@ -65,7 +66,7 @@ class AccountObject extends AbstractObject
     }
 
     /**
-     * (Только для счетов Genesis) Сумма XRP, на которую рассчитана учетная запись № 32570.
+     * (Genesis accounts only) The XRP amount for which account number 32570 is calculated.
      *
      * @return string
      */
@@ -75,8 +76,8 @@ class AccountObject extends AbstractObject
     }
 
     /**
-     * (Только для учетных записей Genesis)
-     * Номер последовательности транзакций в учетной записи с регистрационной книгой # 32570.
+     * (Genesis accounts only)
+     * The sequence number of the transaction in the account with registration book # 32570.
      *
      * @return integer
      */
