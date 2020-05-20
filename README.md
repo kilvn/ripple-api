@@ -16,7 +16,7 @@ Installation is possible using Composer.
 If you don't already use Composer, you can download the composer.phar binary:
 
 ```bash
-curl -sS https://getcomposer.org/installer | php
+> curl -sS https://getcomposer.org/installer | php
 ```
 
 Then install the library:
@@ -35,7 +35,7 @@ Use the Ripple
 $address = "";
 $secret_key = "";
 
-$ripple = new \IEXBase\RippleAPI\Ripple(string $address, string $secret_key = "");
+$ripple = new \IEXBase\RippleAPI\Ripple($address, $secret_key = "");
 
 //$account = $ripple->getAccount();
 //dump($account);

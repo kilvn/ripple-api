@@ -22,21 +22,21 @@ class RippleClient
      *
      * @var string
      */
-    protected $WSSNode;
+    protected string $WSSNode;
 
     /**
      * Guzzle Http Client
      *
      * @var Client
      */
-    protected $client;
+    protected Client $client;
 
     /**
      * Number of requests
      *
-     * @var integer
+     * @var int
      */
-    protected $requestCount = 0;
+    protected int $requestCount = 0;
 
     /**
      * Create a new RippleClient object
@@ -87,8 +87,8 @@ class RippleClient
             }
             return $this->toArray($response->getBody()->getContents());
 
-        } catch (GuzzleException $e) {
-            die($e->getMessage());
+        } catch (GuzzleException $exception) {
+            return ['result' => 'error', 'message' => $exception->getMessage()];
         }
     }
 
@@ -109,8 +109,8 @@ class RippleClient
             $response = $this->client->request($method, $url, ['query' => $options]);
             return $this->toArray($response->getBody()->getContents());
 
-        } catch (GuzzleException $e) {
-            die($e->getMessage());
+        } catch (GuzzleException $exception) {
+            return ['result' => 'error', 'message' => $exception->getMessage()];
         }
     }
 
